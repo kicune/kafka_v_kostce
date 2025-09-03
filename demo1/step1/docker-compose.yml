@@ -105,6 +105,8 @@ services:
     environment:
       KAFKA_REST_LISTENERS: http://0.0.0.0:8082
       KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-1:9092,PLAINTEXT://kafka-2:9092,PLAINTEXT://kafka-3:9092
+      # We don't use Schema Registry here - empty value prevents log warning
+      KAFKA_REST_SCHEMA_REGISTRY_URL: 
     depends_on:
       - kafka-1
       - kafka-2
