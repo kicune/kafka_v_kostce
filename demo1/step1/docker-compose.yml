@@ -14,7 +14,7 @@ services:
     environment:
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_NODE_ID: 1
-      CLUSTER_ID: rN6J4nV9QbPLhWJv0uA2g   # must be identical across brokers
+      CLUSTER_ID: bFuw_nOoSheFt4ySOJkzjQ   # must be identical across brokers
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
 
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
@@ -42,7 +42,7 @@ services:
     environment:
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_NODE_ID: 2
-      CLUSTER_ID: rN6J4nV9QbPLhWJv0uA2g
+      CLUSTER_ID: bFuw_nOoSheFt4ySOJkzjQ
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
 
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
@@ -72,7 +72,7 @@ services:
     environment:
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_NODE_ID: 3
-      CLUSTER_ID: rN6J4nV9QbPLhWJv0uA2g
+      CLUSTER_ID: bFuw_nOoSheFt4ySOJkzjQ
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
 
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
