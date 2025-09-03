@@ -1,0 +1,123 @@
+version: "3.8"
+
+services:
+  # -----------------------------
+  # Kafka node 1
+  # -----------------------------
+  kafka-1:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: kafka-1
+    networks: [kafka]
+    hostname: kafka-1
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 1
+      CLUSTER_ID: rN6J4nV9QbPLhWJv0uA2g   # must be identical across brokers
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes:
+      - kafka1-data:/var/lib/kafka/data
+
+  # -----------------------------
+  # Kafka node 2
+  # -----------------------------
+  kafka-2:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: kafka-2
+    networks: [kafka]
+    hostname: kafka-2
+    environment:
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 2
+      CLUSTER_ID: rN6J4nV9QbPLhWJv0uA2g
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes:
+      - kafka2-data:/var/lib/kafka/data
+    depends_on:
+      - kafka-1
+
+  # -----------------------------
+  # Kafka node 3
+  # -----------------------------
+  kafka-3:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: kafka-3
+    networks: [kafka]
+    hostname: kafka-3
+    environment:
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 3
+      CLUSTER_ID: rN6J4nV9QbPLhWJv0uA2g
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes:
+      - kafka3-data:/var/lib/kafka/data
+    depends_on:
+      - kafka-1
+      - kafka-2
+
+  # -----------------------------
+  # Kafka REST Proxy
+  # -----------------------------
+  rest-proxy:
+    image: confluentinc/cp-kafka-rest:7.6.1
+    container_name: rest-proxy
+    networks: [kafka]
+    hostname: rest-proxy
+    ports:
+      - "8082:8082"
+    environment:
+      KAFKA_REST_LISTENERS: http://0.0.0.0:8082
+      KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-1:9092,PLAINTEXT://kafka-2:9092,PLAINTEXT://kafka-3:9092
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
+      - schema-registry
+
+networks:
+  kafka:
+    driver: bridge
+
+
+volumes:
+  kafka1-data:
+  kafka2-data:
+  kafka3-data:
