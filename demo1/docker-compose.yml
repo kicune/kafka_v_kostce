@@ -1,0 +1,100 @@
+version: "3.8"
+
+networks:
+  kafka:
+    driver: bridge
+
+services:
+  # -----------------------------
+  # Kafka broker 1 (controller+broker)
+  # -----------------------------
+  kafka-1:
+    image: bitnami/kafka:3.7
+    container_name: kafka-1
+    networks: [kafka]
+    hostname: kafka-1
+    ports:
+      - "9092:9092"      # client connections to broker-1 from host
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_KRAFT_CLUSTER_ID=rN6J4nV9QbPLhWJv0uA2g
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-1:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+
+      - KAFKA_CFG_NUM_PARTITIONS=3
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_CFG_GROUP_INITIAL_REBALANCE_DELAY_MS=0
+    volumes:
+      - kafka1-data:/bitnami/kafka
+
+  # -----------------------------
+  # Kafka broker 2 (controller+broker)
+  # -----------------------------
+  kafka-2:
+    image: bitnami/kafka:3.7
+    container_name: kafka-2
+    networks: [kafka]
+    hostname: kafka-2
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_KRAFT_CLUSTER_ID=rN6J4nV9QbPLhWJv0uA2g
+      - KAFKA_CFG_NODE_ID=2
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-2:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+
+      - KAFKA_CFG_NUM_PARTITIONS=3
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_CFG_GROUP_INITIAL_REBALANCE_DELAY_MS=0
+    volumes:
+      - kafka2-data:/bitnami/kafka
+    depends_on:
+      - kafka-1
+
+  # -----------------------------
+  # Kafka broker 3 (controller+broker)
+  # -----------------------------
+  kafka-3:
+    image: bitnami/kafka:3.7
+    container_name: kafka-3
+    networks: [kafka]
+    hostname: kafka-3
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_KRAFT_CLUSTER_ID=rN6J4nV9QbPLhWJv0uA2g
+      - KAFKA_CFG_NODE_ID=3
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093
+
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-3:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+
+      - KAFKA_CFG_NUM_PARTITIONS=3
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_CFG_GROUP_INITIAL_REBALANCE_DELAY_MS=0
+    volumes:
+      - kafka3-data:/bitnami/kafka
+    depends_on:
+      - kafka-1
+      - kafka-2
