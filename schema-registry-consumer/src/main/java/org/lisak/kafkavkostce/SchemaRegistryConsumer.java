@@ -7,7 +7,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.lisak.avro.lunarlanding.LunarLanding;
+import org.lisak.avro.LunarLanding;
 
 import java.io.IOException;
 import java.time.Duration;

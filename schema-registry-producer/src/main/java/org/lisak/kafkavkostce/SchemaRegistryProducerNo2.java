@@ -7,11 +7,12 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.lisak.avro.LunarLanding;
+import org.lisak.avro.MissionDetails;
 
 import java.io.IOException;
 import java.util.Properties;
 
-public class SchemaRegistryProducer {
+public class SchemaRegistryProducerNo2 {
     private static final String KAFKA_TOPIC = "lunar-landings-schema";
 
     public static void main(String[] args)  throws IOException, InterruptedException {
@@ -41,10 +42,16 @@ public class SchemaRegistryProducer {
     }
 
     public static LunarLanding serialize(LunarLandingTestDataFactory.LunarLandingTestData testData) throws IOException {
+        MissionDetails missionDetails = MissionDetails.newBuilder()
+                .setGoal(testData.getMissionGoal())
+                .setLaunchVehicle(testData.getLaunchVehicle())
+                .setMass(testData.getLandingMassKg())
+                .build();
         return LunarLanding.newBuilder()
                 .setDate(testData.getDate())
                 .setProbeName(testData.getProbeName())
                 .setCountry(testData.getCountry())
+                //.setMissionDetails(missionDetails)
                 .build();
     }
 }

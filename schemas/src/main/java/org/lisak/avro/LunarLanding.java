@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package org.lisak.avro.lunarlanding;
+package org.lisak.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2711110396634092516L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LunarLanding\",\"namespace\":\"org.lisak.avro.lunarlanding\",\"fields\":[{\"name\":\"date\",\"type\":\"string\"},{\"name\":\"probeName\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = 5901038364587177306L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LunarLanding\",\"namespace\":\"org.lisak.avro\",\"fields\":[{\"name\":\"date\",\"type\":\"string\"},{\"name\":\"probeName\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -172,8 +172,8 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
    * Creates a new LunarLanding RecordBuilder.
    * @return A new LunarLanding RecordBuilder
    */
-  public static org.lisak.avro.lunarlanding.LunarLanding.Builder newBuilder() {
-    return new org.lisak.avro.lunarlanding.LunarLanding.Builder();
+  public static org.lisak.avro.LunarLanding.Builder newBuilder() {
+    return new org.lisak.avro.LunarLanding.Builder();
   }
 
   /**
@@ -181,11 +181,11 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
    * @param other The existing builder to copy.
    * @return A new LunarLanding RecordBuilder
    */
-  public static org.lisak.avro.lunarlanding.LunarLanding.Builder newBuilder(org.lisak.avro.lunarlanding.LunarLanding.Builder other) {
+  public static org.lisak.avro.LunarLanding.Builder newBuilder(org.lisak.avro.LunarLanding.Builder other) {
     if (other == null) {
-      return new org.lisak.avro.lunarlanding.LunarLanding.Builder();
+      return new org.lisak.avro.LunarLanding.Builder();
     } else {
-      return new org.lisak.avro.lunarlanding.LunarLanding.Builder(other);
+      return new org.lisak.avro.LunarLanding.Builder(other);
     }
   }
 
@@ -194,11 +194,11 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
    * @param other The existing instance to copy.
    * @return A new LunarLanding RecordBuilder
    */
-  public static org.lisak.avro.lunarlanding.LunarLanding.Builder newBuilder(org.lisak.avro.lunarlanding.LunarLanding other) {
+  public static org.lisak.avro.LunarLanding.Builder newBuilder(org.lisak.avro.LunarLanding other) {
     if (other == null) {
-      return new org.lisak.avro.lunarlanding.LunarLanding.Builder();
+      return new org.lisak.avro.LunarLanding.Builder();
     } else {
-      return new org.lisak.avro.lunarlanding.LunarLanding.Builder(other);
+      return new org.lisak.avro.LunarLanding.Builder(other);
     }
   }
 
@@ -222,7 +222,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(org.lisak.avro.lunarlanding.LunarLanding.Builder other) {
+    private Builder(org.lisak.avro.LunarLanding.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.date)) {
         this.date = data().deepCopy(fields()[0].schema(), other.date);
@@ -242,7 +242,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
      * Creates a Builder by copying an existing LunarLanding instance
      * @param other The existing instance to copy.
      */
-    private Builder(org.lisak.avro.lunarlanding.LunarLanding other) {
+    private Builder(org.lisak.avro.LunarLanding other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.date)) {
         this.date = data().deepCopy(fields()[0].schema(), other.date);
@@ -272,7 +272,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'date'.
       * @return This builder.
       */
-    public org.lisak.avro.lunarlanding.LunarLanding.Builder setDate(java.lang.CharSequence value) {
+    public org.lisak.avro.LunarLanding.Builder setDate(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.date = value;
       fieldSetFlags()[0] = true;
@@ -292,7 +292,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'date' field.
       * @return This builder.
       */
-    public org.lisak.avro.lunarlanding.LunarLanding.Builder clearDate() {
+    public org.lisak.avro.LunarLanding.Builder clearDate() {
       date = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -312,7 +312,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'probeName'.
       * @return This builder.
       */
-    public org.lisak.avro.lunarlanding.LunarLanding.Builder setProbeName(java.lang.CharSequence value) {
+    public org.lisak.avro.LunarLanding.Builder setProbeName(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.probeName = value;
       fieldSetFlags()[1] = true;
@@ -332,7 +332,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'probeName' field.
       * @return This builder.
       */
-    public org.lisak.avro.lunarlanding.LunarLanding.Builder clearProbeName() {
+    public org.lisak.avro.LunarLanding.Builder clearProbeName() {
       probeName = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -352,7 +352,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'country'.
       * @return This builder.
       */
-    public org.lisak.avro.lunarlanding.LunarLanding.Builder setCountry(java.lang.CharSequence value) {
+    public org.lisak.avro.LunarLanding.Builder setCountry(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.country = value;
       fieldSetFlags()[2] = true;
@@ -372,7 +372,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'country' field.
       * @return This builder.
       */
-    public org.lisak.avro.lunarlanding.LunarLanding.Builder clearCountry() {
+    public org.lisak.avro.LunarLanding.Builder clearCountry() {
       country = null;
       fieldSetFlags()[2] = false;
       return this;
