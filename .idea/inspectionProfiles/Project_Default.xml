@@ -1,0 +1,90 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AutoCloseableResource" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="VulnerableLibrariesLocal" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="isIgnoringEnabled" value="true" />
+      <option name="ignoredModules">
+        <list>
+          <option value="schemas" />
+          <option value="schemas" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-producer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+          <option value="schema-registry-consumer" />
+        </list>
+      </option>
+      <option name="ignoredPackages">
+        <list>
+          <option value="com.fasterxml.jackson.core:jackson-core:2.10.2" />
+          <option value="org.apache.avro:avro:1.9.2" />
+          <option value="org.glassfish.jersey.core:jersey-common:2.30" />
+          <option value="org.hibernate.validator:hibernate-validator:6.0.17.Final" />
+          <option value="org.glassfish:jakarta.el:3.0.2" />
+          <option value="org.apache.commons:commons-lang3:3.2.1" />
+          <option value="org.yaml:snakeyaml:1.12" />
+          <option value="com.google.guava:guava:18.0" />
+          <option value="org.apache.avro:avro:1.9.2" />
+          <option value="com.fasterxml.jackson.core:jackson-core:2.10.2" />
+          <option value="com.fasterxml.jackson.core:jackson-databind:2.10.2" />
+          <option value="org.apache.commons:commons-compress:1.19" />
+          <option value="org.apache.avro:avro:1.9.2" />
+          <option value="com.fasterxml.jackson.core:jackson-core:2.10.2" />
+          <option value="com.fasterxml.jackson.core:jackson-databind:2.10.2" />
+          <option value="org.apache.commons:commons-compress:1.19" />
+          <option value="org.glassfish.jersey.core:jersey-common:2.30" />
+          <option value="org.hibernate.validator:hibernate-validator:6.0.17.Final" />
+          <option value="org.glassfish:jakarta.el:3.0.2" />
+          <option value="org.apache.commons:commons-lang3:3.2.1" />
+          <option value="org.yaml:snakeyaml:1.12" />
+          <option value="com.google.guava:guava:18.0" />
+          <option value="org.xerial.snappy:snappy-java:1.1.7.3" />
+        </list>
+      </option>
+      <option name="ignoredReasons">
+        <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

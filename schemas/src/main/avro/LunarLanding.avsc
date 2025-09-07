@@ -1,0 +1,19 @@
+{
+  "name": "LunarLanding",
+  "namespace": "org.lisak.avro.lunarlanding",
+  "type": "record",
+  "fields": [
+    {
+      "name": "date",
+      "type": "string"
+    },
+    {
+      "name": "probeName",
+      "type": "string"
+    },
+    {
+      "name": "country",
+      "type": "string"
+    }
+  ]
+}
