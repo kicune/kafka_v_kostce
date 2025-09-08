@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5901038364587177306L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LunarLanding\",\"namespace\":\"org.lisak.avro\",\"fields\":[{\"name\":\"date\",\"type\":\"string\"},{\"name\":\"probeName\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = 1612265099193707545L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LunarLanding\",\"namespace\":\"org.lisak.avro\",\"fields\":[{\"name\":\"date\",\"type\":\"string\"},{\"name\":\"probeName\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"missionDetails\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"MissionDetails\",\"fields\":[{\"name\":\"mass\",\"type\":\"int\"},{\"name\":\"launchVehicle\",\"type\":\"string\"},{\"name\":\"goal\",\"type\":\"string\"}]}],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,6 +74,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
   @Deprecated public java.lang.CharSequence date;
   @Deprecated public java.lang.CharSequence probeName;
   @Deprecated public java.lang.CharSequence country;
+  @Deprecated public org.lisak.avro.MissionDetails missionDetails;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -87,11 +88,13 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
    * @param date The new value for date
    * @param probeName The new value for probeName
    * @param country The new value for country
+   * @param missionDetails The new value for missionDetails
    */
-  public LunarLanding(java.lang.CharSequence date, java.lang.CharSequence probeName, java.lang.CharSequence country) {
+  public LunarLanding(java.lang.CharSequence date, java.lang.CharSequence probeName, java.lang.CharSequence country, org.lisak.avro.MissionDetails missionDetails) {
     this.date = date;
     this.probeName = probeName;
     this.country = country;
+    this.missionDetails = missionDetails;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -102,6 +105,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
     case 0: return date;
     case 1: return probeName;
     case 2: return country;
+    case 3: return missionDetails;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -113,6 +117,7 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
     case 0: date = (java.lang.CharSequence)value$; break;
     case 1: probeName = (java.lang.CharSequence)value$; break;
     case 2: country = (java.lang.CharSequence)value$; break;
+    case 3: missionDetails = (org.lisak.avro.MissionDetails)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -169,6 +174,23 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /**
+   * Gets the value of the 'missionDetails' field.
+   * @return The value of the 'missionDetails' field.
+   */
+  public org.lisak.avro.MissionDetails getMissionDetails() {
+    return missionDetails;
+  }
+
+
+  /**
+   * Sets the value of the 'missionDetails' field.
+   * @param value the value to set.
+   */
+  public void setMissionDetails(org.lisak.avro.MissionDetails value) {
+    this.missionDetails = value;
+  }
+
+  /**
    * Creates a new LunarLanding RecordBuilder.
    * @return A new LunarLanding RecordBuilder
    */
@@ -212,6 +234,8 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
     private java.lang.CharSequence date;
     private java.lang.CharSequence probeName;
     private java.lang.CharSequence country;
+    private org.lisak.avro.MissionDetails missionDetails;
+    private org.lisak.avro.MissionDetails.Builder missionDetailsBuilder;
 
     /** Creates a new Builder */
     private Builder() {
@@ -236,6 +260,13 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
         this.country = data().deepCopy(fields()[2].schema(), other.country);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
+      if (isValidValue(fields()[3], other.missionDetails)) {
+        this.missionDetails = data().deepCopy(fields()[3].schema(), other.missionDetails);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
+      if (other.hasMissionDetailsBuilder()) {
+        this.missionDetailsBuilder = org.lisak.avro.MissionDetails.newBuilder(other.getMissionDetailsBuilder());
+      }
     }
 
     /**
@@ -256,6 +287,11 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
         this.country = data().deepCopy(fields()[2].schema(), other.country);
         fieldSetFlags()[2] = true;
       }
+      if (isValidValue(fields()[3], other.missionDetails)) {
+        this.missionDetails = data().deepCopy(fields()[3].schema(), other.missionDetails);
+        fieldSetFlags()[3] = true;
+      }
+      this.missionDetailsBuilder = null;
     }
 
     /**
@@ -378,6 +414,81 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
       return this;
     }
 
+    /**
+      * Gets the value of the 'missionDetails' field.
+      * @return The value.
+      */
+    public org.lisak.avro.MissionDetails getMissionDetails() {
+      return missionDetails;
+    }
+
+
+    /**
+      * Sets the value of the 'missionDetails' field.
+      * @param value The value of 'missionDetails'.
+      * @return This builder.
+      */
+    public org.lisak.avro.LunarLanding.Builder setMissionDetails(org.lisak.avro.MissionDetails value) {
+      validate(fields()[3], value);
+      this.missionDetailsBuilder = null;
+      this.missionDetails = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'missionDetails' field has been set.
+      * @return True if the 'missionDetails' field has been set, false otherwise.
+      */
+    public boolean hasMissionDetails() {
+      return fieldSetFlags()[3];
+    }
+
+    /**
+     * Gets the Builder instance for the 'missionDetails' field and creates one if it doesn't exist yet.
+     * @return This builder.
+     */
+    public org.lisak.avro.MissionDetails.Builder getMissionDetailsBuilder() {
+      if (missionDetailsBuilder == null) {
+        if (hasMissionDetails()) {
+          setMissionDetailsBuilder(org.lisak.avro.MissionDetails.newBuilder(missionDetails));
+        } else {
+          setMissionDetailsBuilder(org.lisak.avro.MissionDetails.newBuilder());
+        }
+      }
+      return missionDetailsBuilder;
+    }
+
+    /**
+     * Sets the Builder instance for the 'missionDetails' field
+     * @param value The builder instance that must be set.
+     * @return This builder.
+     */
+    public org.lisak.avro.LunarLanding.Builder setMissionDetailsBuilder(org.lisak.avro.MissionDetails.Builder value) {
+      clearMissionDetails();
+      missionDetailsBuilder = value;
+      return this;
+    }
+
+    /**
+     * Checks whether the 'missionDetails' field has an active Builder instance
+     * @return True if the 'missionDetails' field has an active Builder instance
+     */
+    public boolean hasMissionDetailsBuilder() {
+      return missionDetailsBuilder != null;
+    }
+
+    /**
+      * Clears the value of the 'missionDetails' field.
+      * @return This builder.
+      */
+    public org.lisak.avro.LunarLanding.Builder clearMissionDetails() {
+      missionDetails = null;
+      missionDetailsBuilder = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public LunarLanding build() {
@@ -386,6 +497,16 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
         record.date = fieldSetFlags()[0] ? this.date : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.probeName = fieldSetFlags()[1] ? this.probeName : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.country = fieldSetFlags()[2] ? this.country : (java.lang.CharSequence) defaultValue(fields()[2]);
+        if (missionDetailsBuilder != null) {
+          try {
+            record.missionDetails = this.missionDetailsBuilder.build();
+          } catch (org.apache.avro.AvroMissingFieldException e) {
+            e.addParentField(record.getSchema().getField("missionDetails"));
+            throw e;
+          }
+        } else {
+          record.missionDetails = fieldSetFlags()[3] ? this.missionDetails : (org.lisak.avro.MissionDetails) defaultValue(fields()[3]);
+        }
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -424,6 +545,14 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
 
     out.writeString(this.country);
 
+    if (this.missionDetails == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      this.missionDetails.customEncode(out);
+    }
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -437,8 +566,18 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
 
       this.country = in.readString(this.country instanceof Utf8 ? (Utf8)this.country : null);
 
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.missionDetails = null;
+      } else {
+        if (this.missionDetails == null) {
+          this.missionDetails = new org.lisak.avro.MissionDetails();
+        }
+        this.missionDetails.customDecode(in);
+      }
+
     } else {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.date = in.readString(this.date instanceof Utf8 ? (Utf8)this.date : null);
@@ -450,6 +589,18 @@ public class LunarLanding extends org.apache.avro.specific.SpecificRecordBase im
 
         case 2:
           this.country = in.readString(this.country instanceof Utf8 ? (Utf8)this.country : null);
+          break;
+
+        case 3:
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.missionDetails = null;
+          } else {
+            if (this.missionDetails == null) {
+              this.missionDetails = new org.lisak.avro.MissionDetails();
+            }
+            this.missionDetails.customDecode(in);
+          }
           break;
 
         default:

@@ -14,6 +14,11 @@
     {
       "name": "country",
       "type": "string"
+    },
+    {
+      "name": "missionDetails",
+      "type": ["null", "MissionDetails"],
+      "default": null
     }
   ]
 }
