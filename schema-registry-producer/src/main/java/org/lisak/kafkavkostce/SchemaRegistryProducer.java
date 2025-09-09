@@ -2,9 +2,7 @@ package org.lisak.kafkavkostce;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.lisak.avro.LunarLanding;
 
@@ -30,11 +28,18 @@ public class SchemaRegistryProducer {
             LunarLandingTestDataFactory.LunarLandingTestData lunarLandingTestData = LunarLandingTestDataFactory.randomLanding();
 
             System.out.print("Sending to Kafka on the " + KAFKA_TOPIC + " topic the information of the follwing landing: " + lunarLandingTestData.getProbeName());
+
             LunarLanding kafkaValue = serialize(lunarLandingTestData);
-            ProducerRecord<String, LunarLanding> producerRecord =
-                    new ProducerRecord<>(KAFKA_TOPIC, lunarLandingTestData.getProbeName(), kafkaValue);
-            producer.send(producerRecord);
-            System.out.println("...sent");
+
+            ProducerRecord<String, LunarLanding> producerRecord = new ProducerRecord<>(KAFKA_TOPIC, lunarLandingTestData.getProbeName(), kafkaValue);
+
+            //producer.send(producerRecord) if we do not care about the sent confirmation
+            producer.send(producerRecord, new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    System.out.println("...sent");
+                }
+            });
 
             Thread.sleep(1000);
         }
