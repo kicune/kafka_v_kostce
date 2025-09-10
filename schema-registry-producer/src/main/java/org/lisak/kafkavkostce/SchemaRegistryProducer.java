@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class SchemaRegistryProducer {
-    private static final String KAFKA_TOPIC = "lunar-landings-schema";
+    private static final String KAFKA_TOPIC = "lunar-landings";
 
     public static void main(String[] args)  throws IOException, InterruptedException {
         Properties props = new Properties();
