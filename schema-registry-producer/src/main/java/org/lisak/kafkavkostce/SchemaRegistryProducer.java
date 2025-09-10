@@ -4,7 +4,7 @@ import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.lisak.avro.LunarLanding;
+import org.lisak.avro.Probe;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -19,7 +19,7 @@ public class SchemaRegistryProducer {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
         props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
 
-        KafkaProducer<String, LunarLanding> producer = new KafkaProducer<>(props);
+        KafkaProducer<String, Probe> producer = new KafkaProducer<>(props);
 
         Thread shutdownHook = new Thread(producer::close);
         Runtime.getRuntime().addShutdownHook(shutdownHook);
@@ -29,9 +29,9 @@ public class SchemaRegistryProducer {
 
             System.out.print("Sending to Kafka on the " + KAFKA_TOPIC + " topic the information of the follwing landing: " + lunarLandingTestData.getProbeName());
 
-            LunarLanding kafkaValue = serialize(lunarLandingTestData);
+            Probe kafkaValue = serialize(lunarLandingTestData);
 
-            ProducerRecord<String, LunarLanding> producerRecord = new ProducerRecord<>(KAFKA_TOPIC, lunarLandingTestData.getProbeName(), kafkaValue);
+            ProducerRecord<String, Probe> producerRecord = new ProducerRecord<>(KAFKA_TOPIC, lunarLandingTestData.getProbeName(), kafkaValue);
 
             //producer.send(producerRecord) if we do not care about the sent confirmation
             producer.send(producerRecord, new Callback() {
@@ -45,8 +45,8 @@ public class SchemaRegistryProducer {
         }
     }
 
-    public static LunarLanding serialize(LunarLandingTestDataFactory.LunarLandingTestData testData) throws IOException {
-        return LunarLanding.newBuilder()
+    public static Probe serialize(LunarLandingTestDataFactory.LunarLandingTestData testData) throws IOException {
+        return Probe.newBuilder()
                 .setDate(testData.getDate())
                 .setProbeName(testData.getProbeName())
                 .setCountry(testData.getCountry())

@@ -1,5 +1,5 @@
 {
-  "name": "LunarLanding",
+  "name": "Probe",
   "namespace": "org.lisak.avro",
   "type": "record",
   "fields": [
